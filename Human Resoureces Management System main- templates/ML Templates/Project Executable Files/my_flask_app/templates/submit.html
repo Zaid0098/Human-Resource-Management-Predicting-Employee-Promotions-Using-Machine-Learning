@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission Confirmed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('{{ url_for('static', filename='submit.jpg') }}');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content-box {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            display: inline-block;
+            text-align: left;
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+
+        .content-box h1 {
+            font-size: 2em;
+            color: #000;
+            margin-top: 0;
+        }
+
+        .tabs {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: #007bff;
+            padding: 10px;
+            position: fixed;
+            right: 0;
+            top: 50px;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px 0;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .tab:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .tab.active {
+            background-color: #003d7a;
+        }
+    </style>
+</head>
+<body>
+    <div class="tabs">
+        <a href="{{ url_for('home') }}" class="tab {{ 'active' if request.endpoint == 'home' else '' }}">Home</a>
+        <a href="{{ url_for('about') }}" class="tab {{ 'active' if request.endpoint == 'about' else '' }}">About</a>
+        <a href="{{ url_for('predict') }}" class="tab {{ 'active' if request.endpoint == 'predict' else '' }}">Predict</a>
+        <a href="{{ url_for('submit') }}" class="tab {{ 'active' if request.endpoint == 'submit' else '' }}">Submit</a>
+    </div>
+    <main>
+        <div class="content-box">
+            <h1>{{ eligibility_status }}</h1>
+        </div>
+    </main>
+</body>
+</html>
